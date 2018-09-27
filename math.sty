@@ -1,0 +1,116 @@
+%author: Rebenko Yaroslav yarebenko@gmail.com
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{dsfont}
+\usepackage{color}
+\usepackage{iflang}
+\usepackage{comment}
+\usepackage{environ}
+
+%misc
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+\newcommand{\br}[1]{\left( #1 \right)}
+\newcommand{\sbr}[1]{\left[ #1 \right]}
+\newcommand{\cbr}[1]{\left\{ #1 \right\}}
+\newcommand{\vbr}[1]{\left\langle #1 \right\rangle}
+
+\DeclareMathOperator{\avg}{avg}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\seq}[3]{#1_#2,\cdots,#1_#3}
+\newcommand{\ow}{\IfLanguageName{russian}{\text{иначе}}{\text{otherwise}}}
+\newcommand{\st}{\mid}
+\newcommand{\builds}{\vdash}
+
+%sets
+\newcommand{\svoid}{\varnothing}
+\newcommand{\sN}{\mathds{N}}
+\newcommand{\sNo}{\mathds{N}_0}
+\newcommand{\sZ}{\mathds{Z}}
+\newcommand{\sQ}{\mathds{Q}}
+\newcommand{\sR}{\mathds{R}}
+\newcommand{\sC}{\mathds{C}}
+\newcommand{\sH}{\mathds{H}}
+
+\newcommand{\sand}{\bigcap}
+\newcommand{\sdand}{\sqcap}
+\newcommand{\sor}{\bigcup}
+\newcommand{\sdor}{\sqcup}
+\newcommand{\smin}{\setminus}
+\newcommand{\sxor}{\triangle}
+
+\newcommand{\size}[1]{\left| #1 \right|}
+
+%logics
+\newcommand{\sleq}{\subset}
+\newcommand{\sle}{\subsetneq}
+\newcommand{\sgeq}{\supset}
+\newcommand{\sgr}{\supsetneq}
+
+\newcommand{\so}{\Rightarrow}
+
+%ceil
+\newcommand{\ubound}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\lbound}[1]{\left\lfloor #1 \right\rfloor}
+
+%arrays
+\newcommand{\at}[1]{\left[ #1 \right]}
+
+%probarility
+\newcommand{\var}[1]{\mathbb{D}\sbr{#1}}
+\newcommand{\mean}[1]{\mathbb{E}\sbr{#1}}
+\newcommand{\prob}[1]{\mathbb{P}\sbr{#1}}
+
+%linalg
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+%counters/sections
+\renewcommand\thepart{\arabic{part}}
+\theoremstyle{definition}
+\newtheorem{definition}{\IfLanguageName{russian}{Определение}{Definition}}[part]
+\newtheorem{theorem}{\IfLanguageName{russian}{Теорема}{Theorem}}[part]
+\newtheorem{corollary}{\IfLanguageName{russian}{Следствие}{Corollary}}[theorem]
+\newtheorem{mention}{\IfLanguageName{russian}{Замечание}{Mention}}[part]
+\newtheorem{lemma}[theorem]{\IfLanguageName{russian}{Лемма}{Lemma}}
+\newtheorem{example}{\IfLanguageName{russian}{Пример}{Example}}[part]
+\newtheorem{exersise}{\IfLanguageName{russian}{Упражнение}{Exersise}}[part]
+\newtheorem{Problem}{\IfLanguageName{russian}{Задача}{Problem}}[part]
+\newtheorem{pr}{\IfLanguageName{russian}{Задача №}{Problem}}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\renewenvironment{proof}{\par
+\pushQED{\qed}
+\normalfont \topsep6\p@\@plus6\p@\relax
+\trivlist
+\item\relax
+{\itshape
+\IfLanguageName{russian}{Док-во}{Proof}\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{
+\popQED\endtrivlist\@endpefalse
+}
+
+\let\sol\proof
+\let\endsol\endproof
+
+\renewenvironment{sol}{\par
+\pushQED{\qed}
+\normalfont \topsep6\p@\@plus6\p@\relax
+\trivlist
+\item\relax
+{\itshape
+\IfLanguageName{russian}{Решение}{Solution}\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{
+\popQED\endtrivlist\@endpefalse
+}
+
+\newif\ifShowSolutions
+\NewEnviron{solution}{
+    \ifShowSolutions
+    \begin{sol}\\
+        \BODY
+    \end{sol}
+    \fi
+}
